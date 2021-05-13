@@ -1,8 +1,8 @@
-import { useState } from 'react';
-// import axios from 'axios';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import initialState from '../initialState';
 
-// const API = 'http://localhost:1337/products';
+const API = 'http://localhost:1337/products';
 
 const useInitialState = () => {
   const [counter, setCounter] = useState(0)
@@ -11,12 +11,12 @@ const useInitialState = () => {
     return counter
   }
   const [state, setState] = useState(initialState)
-  // const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-  // useEffect(async () => {
-  //   const response = await axios(API);
-  //   setProducts(response.data);
-  // }, [])
+  useEffect(async () => {
+    const response = await axios(API);
+    setProducts(response.data);
+  }, [])
 
   const addToCart = payload => {
     setState({
@@ -51,7 +51,7 @@ const useInitialState = () => {
     addToCart,
     addToBuyer,
     addNewOrder,
-    // products,
+    products,
     state
   }
 }
